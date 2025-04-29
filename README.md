@@ -12,11 +12,11 @@ This repository answers Cascade Debt's skill assessment.
  
 To start, the following Docker commands can be helpful.
 ```console
-docker-compose build  
-docker-compose up -d
-docker-compose run dbt deps
-docker-compose exec dbt bash
-docker-compose run dbt run
+sudo docker-compose build  
+sudo docker-compose up -d
+sudo docker-compose run dbt deps
+sudo docker-compose exec dbt dbt seed
+sudo docker-compose exec dbt dbt run
 
 ```
 

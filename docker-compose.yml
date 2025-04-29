@@ -2,9 +2,6 @@ version: '3.8'
 
 services:
   dbt:
-    mem_limit: 2g
-    mem_reservation: 1g
-    memswap_limit: 4g
     build: .
     volumes:
       - .:/usr/app/dbt
@@ -15,7 +12,8 @@ services:
         condition: service_healthy
     stdin_open: true
     tty: true
-    command: ["sleep", "infinity"]
+    entrypoint: ["/bin/bash", "-c"]
+    command: ["tail -f /dev/null"]  # Keeps container running
 
   postgres:
     mem_limit: 2g
