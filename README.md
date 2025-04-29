@@ -14,7 +14,7 @@ To start, the following Docker commands can be helpful.
 ```console
 sudo docker-compose build  
 sudo docker-compose up -d
-sudo docker-compose run dbt deps
+sudo docker-compose exec dbt dbt deps
 sudo docker-compose exec dbt dbt seed
 sudo docker-compose exec dbt dbt run
 
