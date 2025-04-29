@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  dbt:
+    mem_limit: 2g
+    mem_reservation: 1g
+    memswap_limit: 4g
+    build: .
+    volumes:
+      - .:/usr/app/dbt
+    environment:
+      - DBT_PROFILES_DIR=/usr/app/dbt
+    depends_on:
+      postgres:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+    command: ["sleep", "infinity"]
+
+  postgres:
+    mem_limit: 2g
+    mem_reservation: 1g
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres  # Change back to standard admin
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: cascade_debt_db
+    ports:
+      - "5432:5432"  # Changed to standard port
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d cascade_debt_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+ 

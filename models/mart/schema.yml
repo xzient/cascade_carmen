@@ -1,0 +1,39 @@
+
+version: 2
+
+models:
+  - name: report
+    description: "Report by witness"
+    columns:
+      - name: date_witness
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+      - name: witness
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+
+        
+        
+
+  - name: filing
+    description: "Filing by agent"
+    columns:
+      - name: date_agent
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+      - name: agent
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+    tests:
+      - relationships:
+          to: ref('report')
+          field: data_agent
+          severity: warn

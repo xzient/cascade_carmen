@@ -1,0 +1,24 @@
+name: 'cascade_debt'
+version: '1.0.0'
+config-version: 2
+
+profile: 'cascade_debt'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  cascade_debt:
+    +materialized: view
+
+seeds:
+  cascade_debt:  # Your project name
+    +enabled: true
+    +schema: raw  # Optional custom schema
+    +materialized: seed

@@ -1,0 +1,12 @@
+cascade_debt:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: postgres  # Must match Docker service name
+      port: 5432      # Container port
+      user: postgres
+      password: postgres_password
+      dbname: cascade_debt_db
+      schema: dbt
+      threads: 4
